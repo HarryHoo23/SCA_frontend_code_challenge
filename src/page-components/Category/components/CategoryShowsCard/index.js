@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const StyledCategoryCard = styled(Box)`
   position: relative;
-  padding: ${spacing.l} ${spacing.s};
+  padding: ${spacing.m} ${spacing.s} ${spacing.l};
 
   img {
     border-radius: 12px;

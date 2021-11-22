@@ -2,13 +2,15 @@ import { Flex, Box } from '@rebass/grid';
 import styled from 'styled-components';
 import Paragraph from 'shared-components/Typography/Paragraph';
 import PropTypes from 'prop-types';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { StyledBox, StyledCategoryShows, TextWrapper } from './styled';
 import CategoryShowsCard from '../CategoryShowsCard';
+import spacing from 'styling/spacing';
+import Header from 'shared-components/Typography/Header';
 
 const StyledFlex = styled(Flex)`
   margin: 0 -6px;
-`
+`;
 
 function CategoryShows({ shows, description }) {
   console.log(shows);
@@ -26,9 +28,13 @@ function CategoryShows({ shows, description }) {
         </StyledBox>
       </Flex>
       <Box>
-        <TextWrapper>
-          <Paragraph text={`${data.length} Podcasts`} variant="xl" />
-        </TextWrapper>
+        <Header
+          text={`${data.length} Podcasts`}
+          variant="m"
+          fontWeight="bold"
+          mt={spacing.m}
+          mb={spacing.m}
+        />
         <StyledFlex flexWrap="wrap">
           {data.map((card) => {
             return <CategoryShowsCard key={card.id} card={card} />;
@@ -40,15 +46,17 @@ function CategoryShows({ shows, description }) {
 }
 
 CategoryShows.propTypes = {
-  shows: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    description: PropTypes.string,
-    images: PropTypes.shape({
-      squareLarge: PropTypes.shape({
-        url: PropTypes.string,
+  shows: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      description: PropTypes.string,
+      images: PropTypes.shape({
+        squareLarge: PropTypes.shape({
+          url: PropTypes.string,
+        }),
       }),
-    }),
-  })),
+    })
+  ),
   description: PropTypes.string,
 };
 
