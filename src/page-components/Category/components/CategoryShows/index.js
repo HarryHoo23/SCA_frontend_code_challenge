@@ -1,11 +1,9 @@
 import { Flex, Box } from '@rebass/grid';
-import styled from 'styled-components';
 import Paragraph from 'shared-components/Typography/Paragraph';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { StyledBox, StyledCategoryShows, TextWrapper } from './styled';
 import CategoryShowsCard from '../CategoryShowsCard';
-import spacing from 'styling/spacing';
 import Header from 'shared-components/Typography/Header';
 import SortButton from 'shared-components/SortButton';
 
@@ -17,10 +15,6 @@ export function sortCategoryList(list, isAscending) {
   );
   return sortedList;
 }
-
-const StyledFlex = styled(Flex)`
-  margin: 0 -${spacing.s};
-`;
 
 function CategoryShows({ shows, description }) {
   const [data, setData] = useState(shows);
@@ -80,11 +74,11 @@ function CategoryShows({ shows, description }) {
             side="left"
           />
         </Flex>
-        <StyledFlex flexWrap="wrap">
+        <Flex flexWrap="wrap" mx={-2}>
           {data.map((card) => {
             return <CategoryShowsCard key={card.id} card={card} />;
           })}
-        </StyledFlex>
+        </Flex>
       </Box>
     </StyledCategoryShows>
   );

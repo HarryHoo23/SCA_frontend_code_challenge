@@ -6,7 +6,6 @@ import styled from 'styled-components';
 
 const StyledCategoryCard = styled(Box)`
   position: relative;
-  padding: ${spacing.m} ${spacing.s} ${spacing.l};
 
   img {
     border-radius: 12px;
@@ -24,7 +23,9 @@ const StyledImage = styled(Image)`
 const CategoryShowsCard = ({ card }) => {
   return (
     <StyledCategoryCard
-      width={[1 / 2, 1 / 3, 1 / 4]}
+      width={[1/2, 1/3, 1/4, 1/5]}
+      px={2}
+      py={3}
       color="white"
       bg="primary"
       data-testid={`card-${card.id}`}
