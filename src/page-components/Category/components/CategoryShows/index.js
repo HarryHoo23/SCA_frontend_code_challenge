@@ -7,14 +7,24 @@ import { StyledBox, StyledCategoryShows, TextWrapper } from './styled';
 import CategoryShowsCard from '../CategoryShowsCard';
 import spacing from 'styling/spacing';
 import Header from 'shared-components/Typography/Header';
+import FilterList from 'shared-components/Icons/FilterList';
+import SortButton from 'shared-components/SortButton';
 
 const StyledFlex = styled(Flex)`
   margin: 0 -${spacing.s};
 `;
 
 function CategoryShows({ shows, description }) {
-  console.log(shows);
   const [data, setData] = useState(shows);
+  const [isAscending, setIsAscending] = useState(false);
+
+  const clickHander = () => {
+    setIsAscending(true);
+  }
+
+  const sortCategoryList = (list) => {
+    list.sort((firstElement, secondElement) => isAscending ? firstElement.name.toUpperCase() - secondElement.name.toUpperCase() : secondElement.name.toUpperCase() - firstElement.name.toUpperCase());
+  }
 
   return (
     <StyledCategoryShows>
@@ -28,13 +38,28 @@ function CategoryShows({ shows, description }) {
         </StyledBox>
       </Flex>
       <Box>
-        <Header
-          text={`${data.length} Podcasts`}
-          variant="m"
-          fontWeight="bold"
-          mt="m"
-          mb="m"
-        />
+        <Flex justifyContent="space-between" alignItems="center">
+          <Header
+            text={`${data.length} Podcasts`}
+            variant="m"
+            fontWeight="bold"
+            mt="m"
+            mb="m"
+          />
+          <SortButton onOptionClick={() => {}}
+            options={[
+              {
+                key: 'option1',
+                value: 'SORT A-Z'
+              },
+              {
+                key: 'option2',
+                value: 'SORT Z-A'
+              }
+            ]}
+            side="left"
+          />
+        </Flex>
         <StyledFlex flexWrap="wrap">
           {data.map((card) => {
             return <CategoryShowsCard key={card.id} card={card} />;
