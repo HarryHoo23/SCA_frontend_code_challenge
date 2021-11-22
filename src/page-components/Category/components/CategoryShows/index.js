@@ -2,13 +2,21 @@ import { Flex, Box } from '@rebass/grid';
 import styled from 'styled-components';
 import Paragraph from 'shared-components/Typography/Paragraph';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyledBox, StyledCategoryShows, TextWrapper } from './styled';
 import CategoryShowsCard from '../CategoryShowsCard';
 import spacing from 'styling/spacing';
 import Header from 'shared-components/Typography/Header';
-import FilterList from 'shared-components/Icons/FilterList';
 import SortButton from 'shared-components/SortButton';
+
+export function sortCategoryList(list, isAscending) {
+  const sortedList = list.sort((firstElement, secondElement) =>
+    isAscending === 'option1'
+      ? firstElement.name.localeCompare(secondElement.name)
+      : secondElement.name.localeCompare(firstElement.name)
+  );
+  return sortedList;
+}
 
 const StyledFlex = styled(Flex)`
   margin: 0 -${spacing.s};
@@ -16,15 +24,21 @@ const StyledFlex = styled(Flex)`
 
 function CategoryShows({ shows, description }) {
   const [data, setData] = useState(shows);
-  const [isAscending, setIsAscending] = useState(false);
+  const [isAscending, setIsAscending] = useState('');
 
-  const clickHander = () => {
-    setIsAscending(true);
+  function sortCategoryList(list) {
+    const sortedList = list.sort((firstElement, secondElement) =>
+      isAscending === 'option1'
+        ? firstElement.name.localeCompare(secondElement.name)
+        : secondElement.name.localeCompare(firstElement.name)
+    );
+    return sortedList;
   }
 
-  const sortCategoryList = (list) => {
-    list.sort((firstElement, secondElement) => isAscending ? firstElement.name.toUpperCase() - secondElement.name.toUpperCase() : secondElement.name.toUpperCase() - firstElement.name.toUpperCase());
-  }
+  useEffect(() => {
+    const list = [...data];
+    setData(sortCategoryList(list));
+  }, [isAscending]);
 
   return (
     <StyledCategoryShows>
@@ -46,16 +60,19 @@ function CategoryShows({ shows, description }) {
             mt="m"
             mb="m"
           />
-          <SortButton onOptionClick={() => {}}
+          <SortButton
+            onOptionClick={(key) => {
+              setIsAscending(key);
+            }}
             options={[
               {
                 key: 'option1',
-                value: 'SORT A-Z'
+                value: 'SORT A-Z',
               },
               {
                 key: 'option2',
-                value: 'SORT Z-A'
-              }
+                value: 'SORT Z-A',
+              },
             ]}
             side="left"
           />

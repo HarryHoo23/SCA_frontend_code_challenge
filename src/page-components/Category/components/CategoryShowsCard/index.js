@@ -22,12 +22,13 @@ const StyledImage = styled(Image)`
 
 
 const CategoryShowsCard = ({ card }) => {
+  console.log(card);
   return (
     <StyledCategoryCard
       width={[1 / 2, 1 / 3, 1 / 4]}
       color="white"
       bg="primary"
-      data-testid="show-items"
+      data-testid={`card-${card.id}`}
     >
       <StyledImage
         src={card.images.squareLarge.url}
