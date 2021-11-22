@@ -9,7 +9,7 @@ import spacing from 'styling/spacing';
 import Header from 'shared-components/Typography/Header';
 
 const StyledFlex = styled(Flex)`
-  margin: 0 -6px;
+  margin: 0 -${spacing.s};
 `;
 
 function CategoryShows({ shows, description }) {
@@ -32,8 +32,8 @@ function CategoryShows({ shows, description }) {
           text={`${data.length} Podcasts`}
           variant="m"
           fontWeight="bold"
-          mt={spacing.m}
-          mb={spacing.m}
+          mt="m"
+          mb="m"
         />
         <StyledFlex flexWrap="wrap">
           {data.map((card) => {
