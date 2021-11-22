@@ -1,9 +1,14 @@
-import { Flex } from '@rebass/grid';
+import { Flex, Box } from '@rebass/grid';
+import styled from 'styled-components';
 import Paragraph from 'shared-components/Typography/Paragraph';
 import PropTypes from 'prop-types';
 import React, {useState} from 'react';
 import { StyledBox, StyledCategoryShows, TextWrapper } from './styled';
 import CategoryShowsCard from '../CategoryShowsCard';
+
+const StyledFlex = styled(Flex)`
+  margin: 0 -6px;
+`
 
 function CategoryShows({ shows, description }) {
   console.log(shows);
@@ -20,15 +25,16 @@ function CategoryShows({ shows, description }) {
           )}
         </StyledBox>
       </Flex>
-      <Flex flexWrap="wrap">
+      <Box>
         <TextWrapper>
           <Paragraph text={`${data.length} Podcasts`} variant="xl" />
         </TextWrapper>
-        
-        {data.map((card) => {
-          return <CategoryShowsCard key={card.id} card={card} />;
-        })}
-      </Flex>
+        <StyledFlex flexWrap="wrap">
+          {data.map((card) => {
+            return <CategoryShowsCard key={card.id} card={card} />;
+          })}
+        </StyledFlex>
+      </Box>
     </StyledCategoryShows>
   );
 }
