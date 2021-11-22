@@ -24,21 +24,24 @@ const StyledFlex = styled(Flex)`
 
 function CategoryShows({ shows, description }) {
   const [data, setData] = useState(shows);
-  const [isAscending, setIsAscending] = useState('');
+  const [sortingKey, setSortingKey] = useState('');
 
   function sortCategoryList(list) {
-    const sortedList = list.sort((firstElement, secondElement) =>
-      isAscending === 'option1'
-        ? firstElement.name.localeCompare(secondElement.name)
-        : secondElement.name.localeCompare(firstElement.name)
-    );
+    const sortedList = list.sort((firstElement, secondElement) => {
+      if (sortingKey === "option1") {
+        return firstElement.name.localeCompare(secondElement.name);
+      }
+      if (sortingKey === "option2") {
+        return secondElement.name.localeCompare(firstElement.name);
+      }
+    });
     return sortedList;
   }
 
   useEffect(() => {
     const list = [...data];
     setData(sortCategoryList(list));
-  }, [isAscending]);
+  }, [sortingKey]);
 
   return (
     <StyledCategoryShows>
@@ -62,7 +65,7 @@ function CategoryShows({ shows, description }) {
           />
           <SortButton
             onOptionClick={(key) => {
-              setIsAscending(key);
+              setSortingKey(key);
             }}
             options={[
               {
