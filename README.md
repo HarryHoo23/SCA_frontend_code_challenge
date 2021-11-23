@@ -1,12 +1,10 @@
 # SCA Frontend Take Home Test
 
-Hello! 👋
+## Notes (Harry)
+The category show page is built based on the existing component, such as sorting Button or some existing styles like Rebass & shared components. 
+The result page contains the sorting button, and dropdown list.
 
-Thanks for your time to take this coding test. Please read the following instructions carefully.
-
-The **challenge** is to complete the 'Category' Page according to the design mocks.
-
-This task **should take no longer than a coupe of hours** to complete & is here to assess your ability to write Javascript, HTML and CSS in a real world scenario.
+There are some unit testing written, but to be honest I am not very good at writing unit testing, so please forgive me if some of them are not logically correct. I will put much more effort in learning unit testing in the future. 
 
 ## Getting Started
 The project has been completely setup for you, including the page routes, and API calls. Therefore, the code you need to write is minimal.
