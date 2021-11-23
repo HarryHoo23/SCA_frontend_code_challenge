@@ -35,4 +35,12 @@ describe('CategoryShows component', () => {
      ];
      expect(sortCategoryList(array, 'option2')).toEqual(testedArrayDescending);
    });
+  
+  test('check sort buttons are rendered', () => {
+    render(<CategoryShows />);
+
+    const button = screen.getAllByTestId("category-testing-button");
+    expect(button).toBeTruthy();
+
+  })
 });

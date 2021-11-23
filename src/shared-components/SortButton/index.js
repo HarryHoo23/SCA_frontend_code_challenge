@@ -11,6 +11,7 @@ function SortButton({ onOptionClick, side, options }) {
       variant="secondary"
       icon={<DropDownIcon />}
       id="category-filter-button"
+      data-testid="category-testing-button"
       minWidthDesktop="40px"
       minWidthMobile="40px"
       offsetX={offsetX}

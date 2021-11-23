@@ -1,6 +1,5 @@
 import { Box } from '@rebass/grid';
 import Image from 'shared-components/Image';
-import spacing from 'src/styling/spacing';
 import Paragraph from 'shared-components/Typography/Paragraph';
 import styled from 'styled-components';
 
@@ -28,7 +27,6 @@ const CategoryShowsCard = ({ card }) => {
       py={3}
       color="white"
       bg="primary"
-      data-testid={`card-${card.id}`}
     >
       <StyledImage
         src={card.images.squareLarge.url}
