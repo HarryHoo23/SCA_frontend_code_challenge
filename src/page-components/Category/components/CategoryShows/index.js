@@ -8,11 +8,14 @@ import Header from 'shared-components/Typography/Header';
 import SortButton from 'shared-components/SortButton';
 
 export function sortCategoryList(list, isAscending) {
-  const sortedList = list.sort((firstElement, secondElement) =>
-    isAscending === 'option1'
-      ? firstElement.name.localeCompare(secondElement.name)
-      : secondElement.name.localeCompare(firstElement.name)
-  );
+  const sortedList = list.sort((firstElement, secondElement) => {
+    if (isAscending === 'option1') {
+      return firstElement.name.localeCompare(secondElement.name);
+    }
+    if (isAscending === 'option2') {
+      return secondElement.name.localeCompare(firstElement.name);
+    }
+  });
   return sortedList;
 }
 
@@ -22,10 +25,10 @@ function CategoryShows({ shows, description }) {
 
   function sortCategoryList(list) {
     const sortedList = list.sort((firstElement, secondElement) => {
-      if (sortingKey === "option1") {
+      if (sortingKey === 'option1') {
         return firstElement.name.localeCompare(secondElement.name);
       }
-      if (sortingKey === "option2") {
+      if (sortingKey === 'option2') {
         return secondElement.name.localeCompare(firstElement.name);
       }
     });
